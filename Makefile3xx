@@ -1,0 +1,21 @@
+TARGET = avcdecoder
+OBJS = main.o mp4/mp4.o mp4/mp4_read.o mp4/mp4_file.o mp4/time_math.o mp4/mpegbase.o \
+	common/mem64.o mp4/cooleyesBridge/cooleyesBridge.o common/vram.o
+
+BUILD_PRX = 1
+PSP_FW_VERSION=371
+
+CFLAGS = -G0 -Wall -O3 -DDEVHOOK -DPSPFW3XX -ffast-math
+CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti -fpermissive -std=c++17
+ASFLAGS = $(CFLAGS)
+
+INCDIR = . ./mp4 ./mp4/libmpeg ./mp4/libmp4info-0.0.1.psp ./mp4/cooleyesBridge
+LIBDIR = . ./mp4/
+LDFLAGS =
+LIBS= -lmp4info -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudio -lm -lpsprtc -lpspgum -lpspgu -lstdc++
+
+EXTRA_TARGETS = EBOOT.PBP
+PSP_EBOOT_TITLE = AVC DecodeTest
+
+PSPSDK=$(shell psp-config --pspsdk-path)
+include $(PSPSDK)/lib/build.mak

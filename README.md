@@ -1,0 +1,2 @@
+to convert files to play with this, use ffmpeg as such:
+ffmpeg.exe -y -i "infile" -flags +bitexact -vcodec libx264 -pix_fmt yuv420p -profile:v baseline -level 3.0 -s 480x272 -r 29.97 -b:v 384k -acodec aac -b:a 96k -ar 48000 -f psp -strict -2 "outfile.mp4"

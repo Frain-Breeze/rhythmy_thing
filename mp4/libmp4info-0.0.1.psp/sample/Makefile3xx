@@ -1,0 +1,20 @@
+TARGET = LibMp4InfoTest
+OBJS = main.o mp4_read.o mp4_file.o time_math.o common/mem64.o
+
+BUILD_PRX = 1
+PSP_FW_VERSION=371
+
+CFLAGS = -G0 -Wall -O2
+CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
+ASFLAGS = $(CFLAGS)
+
+INCDIR = ..
+LIBDIR =  ../..
+LDFLAGS =
+LIBS= -lpsppower -lm -lpsprtc -lpspgu -lmp4info
+
+EXTRA_TARGETS = EBOOT.PBP 
+PSP_EBOOT_TITLE = LibMp4Info Test
+
+PSPSDK=$(shell psp-config --pspsdk-path)
+include $(PSPSDK)/lib/build.mak
